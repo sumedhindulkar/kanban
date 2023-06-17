@@ -76,7 +76,7 @@ export default function Layout(props) {
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
-            <Avatar alt="Remy Sharp" src="/static/avatar.jpg" />
+            <Avatar alt="Remy Sharp" src="/kanban/static/avatar.jpg" />
 
             <IconButton color="inherit">
               <Badge badgeContent={4} color="primary">

@@ -180,7 +180,7 @@ export default function Dashboard() {
                   {[1, 2, 3, 4, 5].map((i) => (
                     <Avatar
                       alt={i}
-                      src={"/static/avatar.jpg"}
+                      src={"/kanban/static/avatar.jpg"}
                       sx={{ width: "30px", height: "30px" }}
                     />
                   ))}
