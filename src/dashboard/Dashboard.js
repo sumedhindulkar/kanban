@@ -24,7 +24,7 @@ import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import InputAdornment from "@mui/material/InputAdornment";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import DateRangeIcon from "@mui/icons-material/DateRange";
-import Columns from "./Columns";
+import Columns from "../components/Columns";
 import { taskList } from "./mock";
 import PeopleIcon from "@mui/icons-material/People";
 // TODO remove, this demo shouldn't need to reset the theme.

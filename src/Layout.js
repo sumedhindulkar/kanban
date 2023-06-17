@@ -15,14 +15,18 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
-import { mainListItems, secondaryListItems, listFooter } from "./listItems";
+import {
+  mainListItems,
+  secondaryListItems,
+  listFooter,
+} from "./components/listItems";
 import {
   Search,
   SearchIconWrapper,
   StyledInputBase,
   AppBar,
   Drawer,
-} from "./DashboardComponents";
+} from "./components/DashboardComponents";
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 export default function Layout(props) {
