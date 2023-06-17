@@ -1,119 +1,58 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import CssBaseline from "@mui/material/CssBaseline";
-import MuiDrawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Link from "@mui/material/Link";
+import {
+  Box,
+  Toolbar,
+  List,
+  Typography,
+  Divider,
+  IconButton,
+  Badge,
+  Container,
+  Grid,
+  Paper,
+  TextField,
+  MenuItem,
+} from "@mui/material";
+
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "./listItems";
 import SearchIcon from "@mui/icons-material/Search";
-import { alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-
-const drawerWidth = 240;
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}));
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  "& .MuiDrawer-paper": {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    boxSizing: "border-box",
-    ...(!open && {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9),
-      },
-    }),
-  },
-}));
+import { mainListItems, secondaryListItems, listFooter } from "./listItems";
+import {
+  Search,
+  SearchIconWrapper,
+  StyledInputBase,
+  AppBar,
+  Drawer,
+} from "./DashboardComponents";
+import CreateIcon from "@mui/icons-material/Create";
+import InsertLinkIcon from "@mui/icons-material/InsertLink";
+import InputAdornment from "@mui/material/InputAdornment";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import Columns from "./Columns";
+import { taskList } from "./mock";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
-
 export default function Dashboard() {
-  const [open, setOpen] = React.useState(true);
+  const [todos, setTodos] = useState(taskList.filter((i) => i.type === "ToDo"));
+  const [progress, setProgress] = useState(
+    taskList.filter((i) => i.type === "OnProgress")
+  );
+  const [completed, setCompleted] = useState(
+    taskList.filter((i) => i.type === "Done")
+  );
+
+  const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  const handleDragEnd = () => {};
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -179,41 +118,110 @@ export default function Dashboard() {
             {mainListItems}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
+            {open && listFooter}
           </List>
         </Drawer>
         <Box
           component="main"
           sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
+            backgroundColor: "#fff",
             flexGrow: 1,
             height: "100vh",
-            overflow: "auto",
           }}
         >
           <Toolbar />
+
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
-              <Grid item md={12}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240,
-                  }}
-                >
-                  {" "}
-                </Paper>
+              <Grid container item lg={12}>
+                <Grid md={8} sx={{}}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <Typography variant="h3">Mobile App</Typography>
+                    <CreateIcon
+                      color="primary"
+                      sx={{
+                        backgroundColor: "#F5F5F5",
+                        padding: "4px",
+                        fontSize: "1.8rem",
+                        borderRadius: "4px",
+                        margin: " 0 0 0 15px",
+                      }}
+                    />
+                    <InsertLinkIcon
+                      color="primary"
+                      sx={{
+                        backgroundColor: "#F5F5F5",
+                        padding: "4px",
+                        fontSize: "1.8rem",
+                        borderRadius: "4px",
+                        margin: " 0 0 0 15px",
+                      }}
+                    />
+                  </div>
+                  <div style={{ margin: "30px 0" }}>
+                    <TextField
+                      id="outlined-select-currency"
+                      select
+                      size="small"
+                      defaultValue="Filter"
+                      sx={{ width: "150px", mr: 2 }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <FilterAltOutlinedIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                    >
+                      {["Filter"].map((option) => (
+                        <MenuItem key={option} value={option}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                    <TextField
+                      id="outlined-select-currency"
+                      select
+                      size="small"
+                      defaultValue="Today"
+                      sx={{ width: "150px" }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <DateRangeIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                    >
+                      {["Today"].map((option) => (
+                        <MenuItem key={option} value={option}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </div>
+                </Grid>
+                <Grid md={4} sx={{}}>
+                  blue
+                </Grid>
               </Grid>
+              <DragDropContext onDragEnd={handleDragEnd}></DragDropContext>
 
-              <Grid item xs={12}>
-                <Paper
-                  sx={{ p: 2, display: "flex", flexDirection: "column" }}
-                ></Paper>
+              <Grid container item xs={12} spacing={3}>
+                <Grid item md={4}>
+                  <Columns color={"#5030E5"} title={"To Do"} tasks={todos} />
+                </Grid>
+                <Grid item md={4}>
+                  <Columns
+                    color={"#FFA500"}
+                    title={"On Progress"}
+                    tasks={progress}
+                  />
+                </Grid>
+                <Grid item md={4}>
+                  <Columns color={"#8BC48A"} title={"Done"} tasks={completed} />
+                </Grid>
               </Grid>
             </Grid>
           </Container>
