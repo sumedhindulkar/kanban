@@ -20,6 +20,7 @@ function Columns({ title, color, tasks, id }) {
                 borderRadius: "10px",
                 minHeight: "55vh",
                 padding: "20px",
+                maxWidth: "400px",
               }}
             >
               <Box

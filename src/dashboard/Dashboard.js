@@ -111,7 +111,7 @@ export default function Dashboard() {
                     padding: "4px",
                     fontSize: "1.8rem",
                     borderRadius: "4px",
-                    margin: " 0 0 0 15px",
+                    margin: "0 0 0 15px",
                   }}
                 />
               </div>
@@ -120,7 +120,7 @@ export default function Dashboard() {
                   select
                   size="small"
                   defaultValue="Filter"
-                  sx={{ width: "150px", mr: 2 }}
+                  sx={{ width: "150px", mr: 2, mb: 2 }}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -241,7 +241,7 @@ export default function Dashboard() {
           </Grid>
           <DragDropContext onDragEnd={handleDragEnd}>
             <Grid container item xs={12} spacing={3}>
-              <Grid item md={4}>
+              <Grid item lg={4}>
                 <Columns
                   color={"#5030E5"}
                   title={"To Do"}
@@ -249,7 +249,7 @@ export default function Dashboard() {
                   id={"1"}
                 />
               </Grid>
-              <Grid item md={4}>
+              <Grid item lg={4}>
                 <Columns
                   color={"#FFA500"}
                   title={"On Progress"}
@@ -257,7 +257,7 @@ export default function Dashboard() {
                   id={"2"}
                 />
               </Grid>
-              <Grid item md={4}>
+              <Grid item lg={4}>
                 <Columns
                   color={"#8BC48A"}
                   title={"Done"}

@@ -1,10 +1,6 @@
-import React, { Children, useState } from "react";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import React, { useState } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import WorkspacesIcon from "@mui/icons-material/Workspaces";
-import AppsIcon from "@mui/icons-material/Apps";
-import AddBoxIcon from "@mui/icons-material/AddBox";
 import {
   Box,
   Toolbar,
@@ -13,15 +9,8 @@ import {
   Divider,
   IconButton,
   Badge,
-  Container,
-  Grid,
-  Paper,
-  TextField,
-  MenuItem,
   Avatar,
-  AvatarGroup,
 } from "@mui/material";
-import GridViewIcon from "@mui/icons-material/GridView";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -34,14 +23,6 @@ import {
   AppBar,
   Drawer,
 } from "./DashboardComponents";
-import CreateIcon from "@mui/icons-material/Create";
-import InsertLinkIcon from "@mui/icons-material/InsertLink";
-import InputAdornment from "@mui/material/InputAdornment";
-import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
-import DateRangeIcon from "@mui/icons-material/DateRange";
-import Columns from "./Columns";
-import { taskList } from "./mock";
-import PeopleIcon from "@mui/icons-material/People";
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 export default function Layout(props) {
@@ -54,7 +35,12 @@ export default function Layout(props) {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box sx={{ display: "flex" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <CssBaseline />
         <AppBar position="absolute" open={open} sx={{}}>
           <Toolbar
@@ -116,7 +102,7 @@ export default function Layout(props) {
             {open && listFooter}
           </List>
         </Drawer>
-        {children}
+        <Box sx={!open ? { ml: "100px" } : { ml: "250px" }}>{children}</Box>
       </Box>
     </ThemeProvider>
   );

@@ -17,7 +17,7 @@ export const listFooter = (
     <Box
       sx={{
         backgroundColor: "#F5F5F5",
-        margin: "50px 20px 0 20px",
+        margin: "70px 20px 0 20px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -84,10 +84,10 @@ export const mainListItems = (
   <>
     {listItems.map((i) => {
       return (
-        <ListItemButton>
+        <Box sx={{ display: "flex", alignItems: "center", mb: 1, ml: 3 }}>
           <ListItemIcon>{i.icon}</ListItemIcon>
           <ListItemText primary={i.title} />
-        </ListItemButton>
+        </Box>
       );
     })}
   </>
@@ -128,10 +128,10 @@ export const secondaryListItems = (
     </ListSubheader>
     {projects.map((i) => {
       return (
-        <ListItemButton>
+        <Box sx={{ display: "flex", alignItems: "center", mb: 1, ml: 3 }}>
           <ListItemIcon>{i.icon}</ListItemIcon>
           <ListItemText primary={i.title} />
-        </ListItemButton>
+        </Box>
       );
     })}
   </>
