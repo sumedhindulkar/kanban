@@ -44,7 +44,7 @@ import { taskList } from "./mock";
 import PeopleIcon from "@mui/icons-material/People";
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
-export default function Dashboard() {
+export default function Layout() {
   const [todos, setTodos] = useState(taskList.filter((i) => i.type === "ToDo"));
   const [progress, setProgress] = useState(
     taskList.filter((i) => i.type === "OnProgress")

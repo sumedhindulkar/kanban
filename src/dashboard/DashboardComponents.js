@@ -8,7 +8,7 @@ const drawerWidth = 240;
 export const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: "#F5F5F5",
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -46,6 +46,11 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
+  backgroundColor: "#fff",
+  color: "black",
+  boxShadow: "none",
+  borderBottom: "1px solid lightgrey",
+
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -68,6 +73,7 @@ export const Drawer = styled(MuiDrawer, {
     position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
+    height: "110vh",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
