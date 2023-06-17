@@ -37,11 +37,39 @@ export default function Dashboard() {
     taskList.filter((i) => i.type === "Done")
   );
 
-  const [open, setOpen] = useState(true);
-  const toggleDrawer = () => {
-    setOpen(!open);
+  const handleDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+
+    if (source.droppableId === destination.droppableId) return;
+
+    if (source.droppableId == 1) {
+      setTodos((prev) => {
+        return todos.filter((i) => i.id != draggableId);
+      });
+    } else if (source.droppableId == 2) {
+      setProgress((prev) => {
+        return progress.filter((i) => i.id != draggableId);
+      });
+    } else {
+      setCompleted((prev) => {
+        return completed.filter((i) => i.id != draggableId);
+      });
+    }
+    let item = taskList.find((i) => i.id == draggableId);
+    if (destination.droppableId == 1) {
+      setTodos((prev) => {
+        return [...prev, item];
+      });
+    } else if (destination.droppableId == 2) {
+      setProgress((prev) => {
+        return [...prev, item];
+      });
+    } else {
+      setCompleted((prev) => {
+        return [...prev, item];
+      });
+    }
   };
-  const handleDragEnd = () => {};
 
   return (
     <Box
@@ -211,23 +239,34 @@ export default function Dashboard() {
               </Box>
             </Grid>
           </Grid>
-          <DragDropContext onDragEnd={handleDragEnd}></DragDropContext>
-
-          <Grid container item xs={12} spacing={3}>
-            <Grid item md={4}>
-              <Columns color={"#5030E5"} title={"To Do"} tasks={todos} />
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <Grid container item xs={12} spacing={3}>
+              <Grid item md={4}>
+                <Columns
+                  color={"#5030E5"}
+                  title={"To Do"}
+                  tasks={todos}
+                  id={"1"}
+                />
+              </Grid>
+              <Grid item md={4}>
+                <Columns
+                  color={"#FFA500"}
+                  title={"On Progress"}
+                  tasks={progress}
+                  id={"2"}
+                />
+              </Grid>
+              <Grid item md={4}>
+                <Columns
+                  color={"#8BC48A"}
+                  title={"Done"}
+                  tasks={completed}
+                  id={"3"}
+                />
+              </Grid>
             </Grid>
-            <Grid item md={4}>
-              <Columns
-                color={"#FFA500"}
-                title={"On Progress"}
-                tasks={progress}
-              />
-            </Grid>
-            <Grid item md={4}>
-              <Columns color={"#8BC48A"} title={"Done"} tasks={completed} />
-            </Grid>
-          </Grid>
+          </DragDropContext>
         </Grid>
       </Container>
     </Box>
