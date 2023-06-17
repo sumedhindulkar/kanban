@@ -7,7 +7,11 @@ export const taskList = [
     context: "Brainstorming brings team member's diverse experience into play",
     comments: 12,
     files: 0,
-    avatar: ["/static/avatar.jpg", "/static/avatar.jpg", "/static/avatar.jpg"],
+    avatar: [
+      "/kanban/static/avatar.jpg",
+      "/kanban/static/avatar.jpg",
+      "/kanban/static/avatar.jpg",
+    ],
     image: "",
   },
   {
@@ -18,7 +22,7 @@ export const taskList = [
     context: "Brainstorming brings team member's diverse experience into play",
     comments: 10,
     files: 3,
-    avatar: ["/static/avatar.jpg", "/static/avatar.jpg"],
+    avatar: ["/kanban/static/avatar.jpg", "/kanban/static/avatar.jpg"],
     image: "",
   },
   {
@@ -29,7 +33,11 @@ export const taskList = [
     context: "Brainstorming brings team member's diverse experience into play",
     comments: 17,
     files: 2,
-    avatar: ["/static/avatar.jpg", "/static/avatar.jpg", "/static/avatar.jpg"],
+    avatar: [
+      "/kanban/static/avatar.jpg",
+      "/kanban/static/avatar.jpg",
+      "/kanban/static/avatar.jpg",
+    ],
     image: "",
   },
   {
@@ -40,8 +48,12 @@ export const taskList = [
     context: "",
     comments: 14,
     files: 5,
-    avatar: ["/static/avatar.jpg", "/static/avatar.jpg", "/static/avatar.jpg"],
-    image: "/static/cupcake.jpg",
+    avatar: [
+      "/kanban/static/avatar.jpg",
+      "/kanban/static/avatar.jpg",
+      "/kanban/static/avatar.jpg",
+    ],
+    image: "/kanban/static/cupcake.jpg",
   },
   {
     id: "a5",
@@ -51,8 +63,8 @@ export const taskList = [
     context: "Brainstorming brings team member's diverse experience into play",
     comments: 9,
     files: 10,
-    avatar: ["/static/avatar.jpg"],
-    image: "/static/plant.jpg",
+    avatar: ["/kanban/static/avatar.jpg"],
+    image: "/kanban/static/plant.jpg",
   },
   {
     id: "a6",
@@ -62,8 +74,8 @@ export const taskList = [
     context: "",
     comments: 12,
     files: 0,
-    avatar: ["/static/avatar.jpg", "/static/avatar.jpg"],
-    image: "/static/app.jpg",
+    avatar: ["/kanban/static/avatar.jpg", "/kanban/static/avatar.jpg"],
+    image: "/kanban/static/app.jpg",
   },
   {
     id: "a7",
@@ -73,7 +85,11 @@ export const taskList = [
     context: "Brainstorming brings team member's diverse experience into play",
     comments: 12,
     files: 0,
-    avatar: ["/static/avatar.jpg", "/static/avatar.jpg", "/static/avatar.jpg"],
+    avatar: [
+      "/kanban/static/avatar.jpg",
+      "/kanban/static/avatar.jpg",
+      "/kanban/static/avatar.jpg",
+    ],
     image: "",
   },
 ];

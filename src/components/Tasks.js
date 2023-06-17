@@ -43,13 +43,10 @@ function Tasks({ item, index, type }) {
                 <Typography variant="h6">{item.title}</Typography>
                 <Typography variant="subtitle2">{item.context}</Typography>
               </Box>
-              {JSON.stringify(__dirname)}
+
               {item.image != "" && (
                 <Box sx={{ my: 2 }}>
-                  <img
-                    src={process.env.PUBLIC_URL + item.image}
-                    style={{ width: "100%" }}
-                  />
+                  <img src={item.image} style={{ width: "100%" }} />
                 </Box>
               )}
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
